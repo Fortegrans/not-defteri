@@ -10,7 +10,10 @@ function notlariListele() {
     liste.innerHTML = "";
 
     for (let i = 0; i < notlar.length; i++) {
-        liste.innerHTML += "<li class='list-group-item'>" + notlar[i] + "</li>";
+        liste.innerHTML += "<li class='list-group-item d-flex justify-content-between align-items-center'>" +
+                           "<span>" + notlar[i] + "</span>" +
+                           "<button class='btn btn-danger btn-sm' onclick='notSil(" + i + ")'>Sil</button>" +
+                           "</li>";
     }
 }
 
@@ -24,4 +27,10 @@ function notEkle() {
         kutu.value = "";
         notlariListele();
     }
+}
+
+function notSil(index) {
+    notlar.splice(index, 1);
+    localStorage.setItem("notlar", JSON.stringify(notlar));
+    notlariListele();
 }
